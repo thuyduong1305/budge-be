@@ -5,7 +5,7 @@ import { MAX_RECORD } from "../Global/constants.js";
 const getIncomeList = async (req, res) => {
   let { page = 1, size = MAX_RECORD, searchString = "" } = req.query;
   size = size <= MAX_RECORD ? size : MAX_RECORD;
-  let filteredIncomes = await IncomeRepository.getIncomeList({
+  let filteredIncomes = await incomeRepository.getIncomeList({
     page,
     size,
     searchString,
@@ -22,7 +22,7 @@ const getIncomeList = async (req, res) => {
 const getIncomeById = async (req, res) => {
   let IncomeId = req.params.id;
   try {
-    let Income = await IncomeRepository.getIncomeById(IncomeId);
+    let Income = await incomeRepository.getIncomeById(IncomeId);
     res.status(HttpStatusCode.OK).json({
       message: "Get Income by id",
       data: Income,
@@ -36,14 +36,14 @@ const getIncomeById = async (req, res) => {
 
 const createIncome = async (req, res) => {
   const { name, image } = req.body;
-  await IncomeRepository.createIncome({ name, image });
+  await incomeRepository.createIncome({ name, image });
   res.send(`Post new Income + ${name}`);
 };
 
 const updateIncome = async (req, res) => {
   const { id, name, image } = req.body;
   try {
-    let Income = await IncomeRepository.updateIncome({ id, name, image });
+    let Income = await incomeRepository.updateIncome({ id, name, image });
     res.status(HttpStatusCode.OK).json({
       message: "Update Income by id",
       data: Income,
@@ -58,7 +58,7 @@ const updateIncome = async (req, res) => {
 const deleteIncome = async (req, res) => {
   const id = req.params.id;
   try {
-    let Income = await IncomeRepository.deleteIncome(id);
+    let Income = await incomeRepository.deleteIncome(id);
     res.status(HttpStatusCode.OK).json({
       message: "Delete Income by id",
       data: Income,

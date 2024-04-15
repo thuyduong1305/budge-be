@@ -39,7 +39,7 @@ const updateAmount = async ({ id, name, image }) => {
   const amount = await Amount.findById(id);
   amount.name = name ?? amount.name;
   amount.image = image ?? amount.image;
-  await amount.updateOne({ id, name, image });
+  await amount.updateOne({ _id: id, name, image });
   return amount;
 };
 const deleteAmount = async (id) => {

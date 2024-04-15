@@ -20,77 +20,19 @@ const getPaymentHistoryList = async (req, res) => {
   });
 };
 
-// const getPaymentHistoryById = async (req, res) => {
-//   let PaymentHistoryId = req.params.id;
-//   try {
-//     let PaymentHistory = await PaymentHistoryRepository.getPaymentHistoryById(
-//       PaymentHistoryId
-//     );
-//     res.status(HttpStatusCode.OK).json({
-//       message: "Get PaymentHistory by id",
-//       data: PaymentHistory,
-//     });
-//   } catch (exception) {
-//     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
-//       message: exception.message,
-//     });
-//   }
-// };
-
 const createPaymentHistory = async (req, res) => {
-  const { name, image, date, money } = req.body;
+  const { name, image, date, money, type } = req.body;
   await paymentHistoryRepository.createPaymentHistory({
     name,
     image,
     date,
     money,
+    type,
   });
   res.send(`Post new PaymentHistory + ${name}`);
 };
 
-// const updatePaymentHistory = async (req, res) => {
-//   const { id, name, image } = req.body;
-//   try {
-//     let PaymentHistory = await PaymentHistoryRepository.updatePaymentHistory({
-//       id,
-//       name,
-//       image,
-//     });
-//     res.status(HttpStatusCode.OK).json({
-//       message: "Update PaymentHistory by id",
-//       data: PaymentHistory,
-//     });
-//   } catch (exception) {
-//     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
-//       message: exception.message,
-//     });
-//   }
-// };
-
-// const deletePaymentHistory = async (req, res) => {
-//   const id = req.params.id;
-//   try {
-//     let PaymentHistory = await PaymentHistoryRepository.deletePaymentHistory(
-//       id
-//     );
-//     res.status(HttpStatusCode.OK).json({
-//       message: "Delete PaymentHistory by id",
-//       data: PaymentHistory,
-//     });
-//   } catch (exception) {
-//     res.status(HttpStatusCode.INTERNAL_SERVER_ERROR).json({
-//       message: exception.message,
-//     });
-//   }
-// };
-// const generateFakePaymentHistorys = async (req, res) => {
-//   await PaymentHistoryRepository.generateFakePaymentHistorys(req.body);
-// };
 export default {
   getPaymentHistoryList,
   createPaymentHistory,
-  //   updatePaymentHistory,
-  //   deletePaymentHistory,
-  //   generateFakePaymentHistorys,
-  //   getPaymentHistoryById,
 };

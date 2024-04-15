@@ -25,13 +25,14 @@ const getPaymentHistoryList = async ({ page, size, searchString }) => {
 //   }
 //   return PaymentHistory;
 // };
-const createPaymentHistory = async ({ name, image, date, money }) => {
+const createPaymentHistory = async ({ name, image, date, money, type }) => {
   try {
     const paymentHistory = await PaymentHistory.create({
       name,
       image,
       date,
       money,
+      type,
     });
     return paymentHistory;
   } catch (exception) {
